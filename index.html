@@ -62,7 +62,7 @@
 <body>
     <div class="container">
         <h1>Check your Password</h1>
-        <input type="text" id="query" placeholder="Enter your email" />
+        <input type="text" id="query" placeholder="Enter your email prefix (before the @)" />
         <button onclick="fetchData()">Submit</button>
         <div id="output"></div>
     </div>
@@ -78,7 +78,11 @@
                 .replace(/[\{\}"]/g, '')
                 .replace(/"lines":/g, '');
 
-            document.getElementById('output').innerText = output;
+            if (!output.includes('lines: []')) {
+                document.getElementById('output').innerText = output;
+            } else {
+                document.getElementById('output').innerText = 'No Breaches Found!';
+            }
         }
     </script>
 </body>
